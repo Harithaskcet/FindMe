@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% if error %}
+{{ error }}
+{% endif%}
+<div className = "container">
+<form class="form-signin" method = "POST" action="{% url 'create' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div className = "container">
+        <br/>
+        <p><img class="mb-4" src="{% static 'ph.png' %}" width="40" height="40"><b><span>Product Hunt</span></b></p>
+                <h1 class="h3 mb-3 font-weight-normal">Create</h1>
+        <h3 class="h3 mb-3 font-weight-normal">Title</h3>
+        <label for="title" class="sr-only">Title</label>
+        <input type="text" placeholder="Title" required="" autofocus="" name = "title">
+        <br/>
+
+        <h3 class="h3 mb-3 font-weight-normal">Body</h3>
+        <label for="body" class="sr-only">Body</label>
+        <input type="textbox" placeholder="Body" required="" autofocus="" name = "body">
+        <br/>
+
+        <h3 class="h3 mb-3 font-weight-normal">URL</h3>
+        <label for="url" class="sr-only">URL</label>
+        <input type="text" placeholder="URL" required="" autofocus="" name = "url">
+        <br/>
+
+        <h3 class="h3 mb-3 font-weight-normal">Icon</h3>
+        <input type="file" required="" autofocus="" name = "icon">
+        <br/>
+
+        <h3 class="h3 mb-3 font-weight-normal">Image</h3>
+        <label for="image" class="sr-only">Image</label>
+        <input type="file" placeholder="Image" required="" autofocus="" name = "image">
+        <br/>
+
+        <div class="d-flex justify-content-center">
+                <br/>
+        <button class="btn btn-lg btn-primary" type="submit" value="create">Create</button>
+
+        </div>
+        <br/>
+        </div>
+</form>
+</div>  
+{% endblock %}
