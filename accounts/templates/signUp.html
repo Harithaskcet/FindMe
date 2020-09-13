@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% if error %}
+{{ error }}
+{% endif%}
+<div className = "container">
+<form class="form-signin" method = "POST" action="{% url 'signUp' %}">
+    {% csrf_token %}
+    <div className = "container">
+        <br/>
+        <p><img class="mb-4" src="{% static 'ph.png' %}" width="40" height="40"><b><span>Product Hunt</span></b></p>
+                <h1 class="h3 mb-3 font-weight-normal">Please sign Up</h1>
+        <h3 class="h3 mb-3 font-weight-normal">UserName</h3>
+        <label for="username" class="sr-only">UserName</label>
+        <input type="text" placeholder="UserName" required="" autofocus="" name = "username">
+        <br/>
+        <h3 class="h3 mb-3 font-weight-normal">Password</h3>
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input type="password" placeholder="Password" required="" name = "inputPassword">
+        <br/>
+        <h3 class="h3 mb-3 font-weight-normal">Confirm Password</h3>
+        <label for="pwd" class="sr-only">Confirm Password</label>
+        <input type="password"  placeholder="Confirm Password" required="" name="pwd">
+        <br/>
+        <div class="d-flex justify-content-center">
+                <br/>
+        <button class="btn btn-lg btn-primary" type="submit">SignUp</button>
+
+        </div>
+        <br/>
+        </div>
+</form>
+</div>  
+{% endblock %}
