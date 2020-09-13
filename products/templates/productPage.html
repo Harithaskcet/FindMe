@@ -12,7 +12,11 @@
         <b>{{ product.summary }}</b>
     </div>
     <div class="col-3">
-        <a href="javascript:{document.getElementById('upvote {{product.id }}').submit()}"><button class="btn btn-lg btn-primary" value="UpVote">UpVote <b>{{ product.votes_total }} </b></button></a>
+            {% if product.upvoted %}
+            <a href="javascript:{document.getElementById('upvote {{product.id }}').submit()}"><button class="btn btn-lg btn-primary" value="UpVote" disabled>UpVote <b>{{ product.votes_total }} </b></button></a>
+            {% else %}
+            <a href="javascript:{document.getElementById('upvote {{product.id }}').submit()}"><button class="btn btn-lg btn-primary" value="UpVote">UpVote <b>{{ product.votes_total }} </b></button></a>
+            {% endif %}
     </div>
 </div>
 <form method="POST" id="upvote {{ product.id }}" action="{% url 'addVote' product.id %}">

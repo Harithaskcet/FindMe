@@ -11,6 +11,7 @@ class Products(models.Model):
     body =  models.TextField()
     image = models.ImageField(upload_to='uploads/')
     iconImage = models.ImageField(upload_to='uploads/')
+    upvoted = models.BooleanField()
     changedBy = models.ForeignKey(User, on_delete= models.CASCADE)
 
     def pub_date_pretty(self):

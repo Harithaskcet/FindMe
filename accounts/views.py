@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from products.models import Products
 # Create your views here.
 def login(request):
     if request.method == 'POST':
@@ -30,5 +31,9 @@ def signUp(request):
 
 def logOut(request):
     if request.method == 'POST':
+        products = Products.objects
+        for product in products.all():
+            product.upvoted = False
+            product.save()
         auth.logout(request)
         return redirect('home')

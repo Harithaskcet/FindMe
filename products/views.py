@@ -12,11 +12,12 @@ def detail(request, product_id):
     product_detail = get_object_or_404(Products, pk=product_id)
     return render(request, 'detail.html', {'product': product_detail})
 
-@login_required
+@login_required(login_url="/account/login")
 def addVote(request, product_id):
     if request.method == "POST":
         product = get_object_or_404(Products, pk=product_id)
         product.votes_total += 1
+        product.upvoted = True
         product.save()
         return redirect('/product/' + str(product.id))
 
@@ -36,6 +37,7 @@ def create(request):
             product.iconImage = request.FILES['icon']
             product.image = request.FILES['image']
             product.changedBy = request.user
+            product.upvoted = False
             product.save()
             return redirect('/product/' + str(product.id))
         else:
